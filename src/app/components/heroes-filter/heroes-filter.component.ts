@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeroesFilterComponent implements OnInit {
 
-  heroes:Heroe[] = [];
+  heroes:any[] = [];
   termino:string = '';
   constructor(private activatedRoute:ActivatedRoute, private _heroesService:HeroesService, private router:Router) {
     console.log("constructor heroesFilter");
@@ -18,14 +18,15 @@ export class HeroesFilterComponent implements OnInit {
   ngOnInit(): void {
     console.log("ngOnInit heroesFilter");
     this.activatedRoute.params.subscribe(params => {
-      this.heroes = this._heroesService.buscarHeroes( params['termino']);
       this.termino = params['termino'];
+      this.heroes = this._heroesService.buscarHeroes( params['termino']);
+      console.log(this.heroes);
     })
 }
 
-    buscarHeroe( nombre:string) {
-      console.log(nombre + " en buscar heroe")
-    this.router.navigate(["/heroePorNombre", nombre]);
-    }
+
+// verHeroe( idx:number) {
+//   this.router.navigate(["/heroe", idx]);
+//   }
 
 }
